@@ -1,0 +1,14 @@
+.container {
+  padding: 0;
+}
+.card {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardList .card {
+  flex: 0 0 218px;
+}

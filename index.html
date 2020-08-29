@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商城排序</title>
+    <link rel="stylesheet" href="./css/reset.min.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">商城排序</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item" data-pai="data-time">
+              <a class="nav-link" href="javascript:;">上架时间</a>
+            </li>
+            <li class="nav-item" data-pai="data-price">
+              <a class="nav-link" href="javascript:;">价格</a>
+            </li>
+            <li class="nav-item" data-pai="data-hot">
+              <a class="nav-link" href="javascript:;">热度</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="cardList"></div>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/index-jquery.js"></script>
+  </body>
+</html>
