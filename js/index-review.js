@@ -17,9 +17,9 @@
   data.forEach(({ img, hot, price, time, title }) => {
     htmlStr += `
     <div class="card"
-        data-time="${time}"
-        data-price="${price}"
-        data-hot="${hot}"
+        time="${time}"
+        price="${price}"
+        hot="${hot}"
     >
         <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
@@ -51,7 +51,7 @@
       cards.sort((a, b) => {
         a = a.getAttribute(pai);
         b = b.getAttribute(pai);
-        if (pai === "data-time") {
+        if (pai === "time") {
           a = a.replace(/-/g, "");
           b = b.replace(/-/g, "");
         }

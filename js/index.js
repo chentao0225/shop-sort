@@ -1,10 +1,9 @@
 let shopModel = (function ($) {
   let _data = null,
-    htmlStr = "",
-    $cardList = $(".cardList"),
-    $navList = $(".navbar-nav li"),
-    $cards = null;
-  function queryData() {
+    $cardBox = $(".cardList"),
+    $navList = $(".navbar-nav li");
+  $cards = null;
+  function handleData() {
     $.ajax({
       url: "../json/product.json",
       method: "get",
@@ -14,17 +13,14 @@ let shopModel = (function ($) {
       },
     });
   }
-
-  function createCards() {
-    if (_data.length === 0) return;
+  function render() {
+    // console.log(_data);
+    let htmlStr = ``;
     _data.forEach((item) => {
-      let $this = $(this);
-      let { price, hot, time, title, img } = item;
+      let { title, time, hot, price, img } = item;
       htmlStr += `
-      <div class="card"
-        data-price=${price}
-        data-hot=${hot}
-        data-time=${time}
+    <div class="card"
+        
     >
         <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
@@ -34,43 +30,45 @@ let shopModel = (function ($) {
             <p class="card-text"><small class="text-muted">${time}</small></p>
         </div>
     </div>
-      `;
-      $cardList.html(htmlStr);
+        `;
     });
+    // console.log(htmlStr);
+    $cardBox.html(htmlStr);
+    // handleSort();
   }
 
-  function shopSort() {
-    $cards = $(".card");
+  function handleSort() {
+    console.log("sort");
     $navList.attr("flag", -1);
     $navList.click(function () {
-      let _this = $(this);
-      _this
-        .attr("flag", _this.attr("flag") * -1)
+      let $this = $(this),
+        pai = $this.attr("data-pai");
+      //   console.log(pai);
+      $this
+        .attr("flag", $this.attr("flag") * -1)
         .siblings()
         .attr("flag", -1);
-      let pai = _this.attr("data-pai");
-      // console.log(pai);
-      $cards.sort((a, b) => {
-        // console.log(a, b);
-        let $a = $(a),
-          $b = $(b);
-        $a = $a.attr(pai);
-        $b = $b.attr(pai);
-        if (pai === "data-time") {
-          $a = $a.replace(/-/g, "");
-          $b = $b.replace(/-/g, "");
+      console.log($this.attr("flag"));
+      _data.sort((a, b) => {
+        a = a[pai];
+        b = b[pai];
+        if (pai === "time") {
+          a = a.replace(/-/g, "");
+          b = b.replace(/-/g, "");
         }
-        return ($a - $b) * _this.attr("flag");
+        return (a - b) * $this.attr("flag");
       });
-      $cards.each((index, item) => $cardList.append(item));
+
+      render();
     });
   }
   return {
     init() {
-      queryData();
-      createCards();
-      shopSort();
+      handleData();
+      render();
+      handleSort();
     },
   };
 })(jQuery);
+
 shopModel.init();

@@ -13,9 +13,9 @@ let htmlStr = "";
 data.forEach(({ img, hot, title, price, time }) => {
   htmlStr += `
     <div class="card"
-        data-price=${price}
-        data-hot=${hot}
-        data-time=${time}
+        price=${price}
+        hot=${hot}
+        time=${time}
     >
         <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
@@ -48,7 +48,7 @@ $navList.click(function () {
     // console.dir(a);
     a = a.getAttribute(pai);
     b = b.getAttribute(pai);
-    if (pai === "data-time") {
+    if (pai === "time") {
       a = a.replace(/-/g, "");
       b = b.replace(/-/g, "");
     }
